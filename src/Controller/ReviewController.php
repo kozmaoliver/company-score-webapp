@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DTO\Review\Input\ListQuery;
 use App\Entity\Review;
+use App\Factory\Contracts\EntityFactoryInterface;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,6 +21,7 @@ class ReviewController extends AbstractController
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
+        private readonly EntityFactoryInterface $entityFactory
     ) {
     }
 
@@ -40,7 +42,7 @@ class ReviewController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function createAction(Request $request): Response
     {
-        $review = new Review();
+        $review = $this->entityFactory->create(Review::class);
 
         $form = $this->createForm(ReviewType::class, $review);
 

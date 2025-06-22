@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Shared\CreationDateAwareEntity;
 use App\Entity\Shared\CreationDateAwareInterface;
+use App\Entity\Shared\EntityInterface;
 use App\Entity\Shared\IdentifiableEntity;
 use App\Entity\Shared\IdentifiableEntityInterface;
 use App\Repository\ReviewRepository;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Review implements IdentifiableEntityInterface, CreationDateAwareInterface
+class Review implements EntityInterface, IdentifiableEntityInterface, CreationDateAwareInterface
 {
     use IdentifiableEntity;
     use CreationDateAwareEntity;
