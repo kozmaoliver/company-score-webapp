@@ -6,7 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 class ReviewType extends AbstractType
@@ -15,17 +18,26 @@ class ReviewType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('companyName');
+        $builder->add('companyName', TextType::class, [
+            'constraints' => [
+                new NotNull(message: 'review.assert.companyName.null'),
+                new Length(min: 3, max: 255),
+            ],
+        ]);
         $builder->add('rating', StarRatingType::class, [
             'required' => true,
             'constraints' => [
-                new NotNull(message: 'review.assert.rating.null')
-            ]
+                new NotNull(message: 'review.assert.rating.null'),
+            ],
         ]);
         $builder->add('reviewText', TextareaType::class, [
-            'required' => false
+            'required' => false,
         ]);
-        $builder->add('authorEmail', EmailType::class);
+        $builder->add('authorEmail', EmailType::class, [
+            'constraints' => [
+                new Email(),
+            ],
+        ]);
         $builder->add('submit', SubmitType::class);
     }
 }
