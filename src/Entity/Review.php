@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Review implements EntityInterface, IdentifiableEntityInterface, CreationDateAwareInterface
+final class Review implements EntityInterface, IdentifiableEntityInterface, CreationDateAwareInterface
 {
     use IdentifiableEntity;
     use CreationDateAwareEntity;

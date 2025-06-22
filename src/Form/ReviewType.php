@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 
-class ReviewType extends AbstractType
+final class ReviewType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,21 +23,44 @@ class ReviewType extends AbstractType
                 new NotNull(message: 'review.assert.companyName.null'),
                 new Length(min: 3, max: 255),
             ],
+            'label' => 'review.companyName.label',
+            'label_attr' => [
+                'class' => 'form-label',
+            ],
+            'attr' => [
+                'class' => 'form-control',
+            ],
         ]);
         $builder->add('rating', StarRatingType::class, [
             'required' => true,
+            'label' => 'review.rating.label',
             'constraints' => [
                 new NotNull(message: 'review.assert.rating.null'),
             ],
         ]);
         $builder->add('reviewText', TextareaType::class, [
             'required' => false,
+            'label' => 'review.reviewText.label',
+            'attr' => [
+                'class' => 'form-control',
+            ],
         ]);
         $builder->add('authorEmail', EmailType::class, [
+            'label' => 'review.authorEmail.label',
             'constraints' => [
                 new Email(),
             ],
+            'label_attr' => [
+                'class' => 'form-label',
+            ],
+            'attr' => [
+                'class' => 'form-control',
+            ],
         ]);
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', SubmitType::class, [
+            'attr' => [
+                'class' => 'mt-3'
+            ]
+        ]);
     }
 }

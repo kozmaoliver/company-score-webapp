@@ -2,7 +2,7 @@
 
 namespace App\DTO\Review\Input;
 
-class ListQuery
+final class ListQuery
 {
     public ?string $search = null;
 

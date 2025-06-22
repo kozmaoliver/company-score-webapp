@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/review', name: self::PREFIX)]
-class ReviewController extends AbstractController
+final class ReviewController extends AbstractController
 {
     private const PREFIX = 'review_';
 
@@ -39,7 +39,7 @@ class ReviewController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/create', name: 'create', methods: ['GET', 'POST'])]
     public function createAction(Request $request): Response
     {
         $review = $this->entityFactory->create(Review::class);
