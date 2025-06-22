@@ -1,6 +1,0 @@
-search:
-    no_result: No review found for "searchQuery"...
-
-review:
-    flash:
-        added: Review added successfully!
