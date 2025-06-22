@@ -6,9 +6,10 @@ use App\Entity\Shared\CreationDateAwareEntity;
 use App\Entity\Shared\CreationDateAwareInterface;
 use App\Entity\Shared\IdentifiableEntity;
 use App\Entity\Shared\IdentifiableEntityInterface;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review implements IdentifiableEntityInterface, CreationDateAwareInterface
 {
     use IdentifiableEntity;
