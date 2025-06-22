@@ -1,11 +1,9 @@
 {% extends '@project_template/base.html.twig' %}
 
 {% block body %}
-    <h1>HELLO — new</h1>
-
     <a href="{{ listPath }}">back to list</a>
 
-    <div class="container mt-5">
+    <div class="container mt-5 col-4">
         {{ form_start(form) }}
             {{ form_row(form.companyName) }}
             {{ form_row(form.rating) }}
