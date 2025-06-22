@@ -3,12 +3,32 @@
 {% block body %}
     <h1>HELLO — list</h1>
 
-<div class="container mt-4">
-    <div class="row">
-        {% for review in reviews %}
-            {% include '@project_template/review/_components/_card.html.twig' %}
-        {% endfor %}
+    <div class="container mt-4">
+
+        <form method="get" action="{{ path('review_list') }}" class="mb-4">
+            <div class="input-group">
+                <label>
+                    <input type="search"
+                           name="search"
+                           value="{{ app.request.query.get('search') }}"
+                           placeholder="Search reviews..."
+                           class="form-control">
+                </label>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </form>
+
+        <div class="row">
+            {% if reviews is empty %}
+                {{ 'search.no_result'|trans({'searchQuery': searchQuery}) }}
+            {% else %}
+                {% for review in reviews %}
+                    {% include '@project_template/review/_components/_card.html.twig' %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-</div>
 
 {% endblock %}

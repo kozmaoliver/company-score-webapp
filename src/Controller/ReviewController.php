@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\Review\Input\ListQuery;
 use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
@@ -9,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/review', name: self::PREFIX)]
@@ -18,18 +20,20 @@ class ReviewController extends AbstractController
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly ReviewRepository $reviewRepository,
     ) {
     }
 
     #[Route('/list', name: 'list', methods: ['GET'])]
-    public function listAction(): Response
-    {
-        $reviews = $this->reviewRepository->findAll();
+    public function listAction(
+        #[MapQueryString] ?ListQuery $listQuery,
+        ReviewRepository $reviewRepository
+    ): Response {
+        $reviews = $reviewRepository->findList($listQuery?->search);
 
         return $this->render('review/list.html.twig', [
             'reviews' => $reviews,
             'routePrefix' => self::PREFIX,
+            'searchQuery' => $listQuery?->search,
         ]);
     }
 
@@ -53,7 +57,7 @@ class ReviewController extends AbstractController
         $this->entityManager->persist($review);
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Review added successfully!');
+        $this->addFlash('success', 'review.flash.added');
 
         return $this->redirectToRoute(self::PREFIX.'list');
     }

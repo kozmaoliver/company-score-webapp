@@ -12,4 +12,18 @@ class ReviewRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Review::class);
     }
+
+    public function findList(?string $search): array
+    {
+        $queryBuilder = $this->createQueryBuilder('r');
+
+        if (null !== $search) {
+            $queryBuilder->andWhere('r.companyName like :query')
+                ->setParameter('query', '%' . addcslashes($search, '%_') . '%');
+        }
+
+        $queryBuilder->addOrderBy('r.createdAt', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
