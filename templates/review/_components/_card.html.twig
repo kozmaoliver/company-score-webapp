@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ review.companyName }}</h5>
+        <div class="star-rating-display" data-rating="{{ review.rating }}">
+            {% for i in 1..5 %}
+                <span class="star {% if i <= review.rating %}filled{% endif %}">★</span>
+            {% endfor %}
+        </div>
+
+        <div>{{ review.reviewText }}</div>
+        <div>{{ review.authorEmail }}</div>
+
+        <a href="{{ path(routePrefix ~ 'view', {id: review.id}) }}" class="btn btn-primary">View</a>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #f5f5f5;
+}
+
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.star-rating input:checked ~ label {
+  color: #ffca08;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #ffca08;
+}
+
+.star-rating input:checked ~ label {
+  opacity: 1;
+}
+.star-rating input:checked ~ label:hover,
+.star-rating input:checked ~ label:hover ~ label {
+  opacity: 1;
+}
+
+.star-rating input:checked ~ label:not(:hover):not(:hover ~ label) {
+  opacity: 0.6;
+}
+
+.star-rating-display {
+  font-size: 1.2rem;
+}
+.star-rating-display .star {
+  color: #ddd;
+  display: inline-block;
+}
+.star-rating-display .star.filled {
+  color: #ffca08;
+}

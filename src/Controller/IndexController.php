@@ -11,6 +11,6 @@ class IndexController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('dashboard/index.html.twig');
+        return $this->redirectToRoute('review_list');
     }
 }
