@@ -1,0 +1,15 @@
+{% block star_rating_widget %}
+    <div class="star-rating mb-3">
+        {% for value in stars|reverse %}
+            <input type="radio"
+                   id="{{ id }}_{{ value }}"
+                   name="{{ full_name }}"
+                   value="{{ value }}"
+                   class="star-rating-input"
+            >
+            <label for="{{ id }}_{{ value }}" class="star-rating-label" data-value="{{ value }}">
+                ★
+            </label>
+        {% endfor %}
+    </div>
+{% endblock %}
