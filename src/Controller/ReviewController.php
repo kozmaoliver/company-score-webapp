@@ -53,7 +53,7 @@ final class ReviewController extends AbstractController
             return $this->render('review/form.html.twig', [
                 'form' => $form,
                 'entity' => $review,
-                'listPath' => $this->generateUrl(self::PREFIX.'list'),
+                'listPath' => $this->generateUrl(self::PREFIX . 'list'),
             ]);
         }
 
@@ -61,7 +61,7 @@ final class ReviewController extends AbstractController
 
         $this->addFlash('success', 'review.flash.added');
 
-        return $this->redirectToRoute(self::PREFIX.'list');
+        return $this->redirectToRoute(self::PREFIX . 'list');
     }
 
     #[Route('/view/{id}', name: 'view', methods: ['GET'])]

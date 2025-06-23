@@ -28,5 +28,4 @@ class CreateReviewHandlerTest extends TestCase
 
         $handler->__invoke($command);
     }
-
 }

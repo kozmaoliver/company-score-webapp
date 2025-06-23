@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Validation;
 
 final class ReviewType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);

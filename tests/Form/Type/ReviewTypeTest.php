@@ -73,4 +73,3 @@ class ReviewTypeTest extends TypeTestCase
         $this->assertCount(3, $form->getErrors(true));
     }
 }
-
