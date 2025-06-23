@@ -1,6 +1,20 @@
 search:
     no_result: Nincs találat a "searchQuery" kulcsszóra...
+    placeholder: Keress cégnévre
 
 review:
     flash:
         added: Köszönjük a véleményed!
+    back_to_list: << Vissza a lista oldalra
+    view:
+        label: Bővebben
+    create: Értékelés
+    companyName:
+        label: Cég neve
+    rating:
+        label: Értékelés
+    reviewText:
+        label: Szöveges értékelés
+    authorEmail:
+        label: Az email címed
+Submit: Beküldés
