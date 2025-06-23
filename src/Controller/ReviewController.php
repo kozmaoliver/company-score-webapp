@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use App\Command\Review\CreateReviewCommand;
 use App\DTO\Review\Input\ListQuery;
 use App\Entity\Review;
 use App\Factory\Contracts\EntityFactoryInterface;
-use App\Form\ReviewType;
+use App\Form\Type\ReviewType;
 use App\Repository\ReviewRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryString;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/review', name: self::PREFIX)]
@@ -20,8 +21,8 @@ final class ReviewController extends AbstractController
     private const PREFIX = 'review_';
 
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly EntityFactoryInterface $entityFactory
+        private readonly EntityFactoryInterface $entityFactory,
+        private readonly MessageBusInterface $bus
     ) {
     }
 
@@ -56,8 +57,7 @@ final class ReviewController extends AbstractController
             ]);
         }
 
-        $this->entityManager->persist($review);
-        $this->entityManager->flush();
+        $this->bus->dispatch(new CreateReviewCommand($review));
 
         $this->addFlash('success', 'review.flash.added');
 
