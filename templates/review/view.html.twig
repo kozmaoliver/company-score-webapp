@@ -1,5 +1,19 @@
 {% extends '@project_template/base.html.twig' %}
 
 {% block body %}
-    VIEW
+
+<div class="container mt-5 col-4">
+    <a class="btn btn-danger mb-4" href="{{ path(routePrefix ~ 'list') }}">
+        {{ 'review.back_to_list'|trans() }}
+    </a>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ review.companyName }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ review.authorEmail }}</h6>
+            {% include '@project_template/review/_components/rating_display.html.twig' %}
+            <p class="card-text">{{ review.reviewText }}</p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

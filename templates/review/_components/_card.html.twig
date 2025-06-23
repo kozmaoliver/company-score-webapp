@@ -3,19 +3,15 @@
         {{ review.companyName }}
     </div>
     <div class="card-body">
-        <div class="star-rating-display" data-rating="{{ review.rating }}">
-            {% for i in 1..5 %}
-                <span class="star {% if i <= review.rating %}filled{% endif %}">★</span>
-            {% endfor %}
-        </div>
+        {% include '@project_template/review/_components/rating_display.html.twig' %}
         <figure>
             <blockquote class="blockquote">
                 <p>{{ review.reviewText|length > 50 ? review.reviewText|slice(0, 50) ~ '...' : review.reviewText  }}</p>
             </blockquote>
-            <a href="{{ path(routePrefix ~ 'view', {id: review.id}) }}" class="btn btn-primary">{{ 'review.view.label'|trans({'searchQuery': searchQuery}) }}</a>
             <div>
                 {{ review.authorEmail }}
             </div>
+            <a href="{{ path(routePrefix ~ 'view', {id: review.id}) }}" class="btn btn-primary">{{ 'review.view.label'|trans({'searchQuery': searchQuery}) }}</a>
         </figure>
     </div>
 </div>

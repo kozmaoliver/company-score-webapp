@@ -53,7 +53,7 @@ final class ReviewController extends AbstractController
             return $this->render('review/form.html.twig', [
                 'form' => $form,
                 'entity' => $review,
-                'listPath' => $this->generateUrl(self::PREFIX . 'list'),
+                'routePrefix' => self::PREFIX,
             ]);
         }
 
@@ -69,6 +69,7 @@ final class ReviewController extends AbstractController
     {
         return $this->render('review/view.html.twig', [
             'review' => $review,
+            'routePrefix' => self::PREFIX,
         ]);
     }
 }

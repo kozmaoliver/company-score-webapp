@@ -18,11 +18,20 @@
             </div>
 
             <div class="col-6">
-                <a class="btn btn-primary" href="{{ path(routePrefix ~ 'create') }}" role="button">{{ 'search.create'|trans({'searchQuery': searchQuery}) }}</a>
+                <a class="btn btn-primary" href="{{ path(routePrefix ~ 'create') }}" role="button">{{ 'review.create'|trans({'searchQuery': searchQuery}) }}</a>
             </div>
         </div>
 
         <div class="row">
+
+            {% if searchQuery is not null and searchQuery is not same as '' %}
+                <div class="m-2">
+                    <a href="{{ path('review_list') }}" class="btn btn-secondary">
+                        {{ searchQuery }} x
+                    </a>
+                </div>
+            {% endif %}
+
             {% if reviews is empty %}
                 {{ 'search.no_result'|trans({'searchQuery': searchQuery}) }}
             {% else %}

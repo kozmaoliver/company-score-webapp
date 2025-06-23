@@ -1,0 +1,5 @@
+<div class="star-rating-display" data-rating="{{ review.rating }}">
+    {% for i in 1..5 %}
+        <span class="star {% if i <= review.rating %}filled{% endif %}">★</span>
+    {% endfor %}
+</div>

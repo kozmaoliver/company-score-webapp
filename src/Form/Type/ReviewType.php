@@ -62,7 +62,7 @@ final class ReviewType extends AbstractType
         ]);
         $builder->add('submit', SubmitType::class, [
             'attr' => [
-                'class' => 'mt-3'
+                'class' => 'mt-3 btn btn-success'
             ]
         ]);
     }

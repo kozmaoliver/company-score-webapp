@@ -1,9 +1,12 @@
 {% extends '@project_template/base.html.twig' %}
 
 {% block body %}
-    <a href="{{ listPath }}">back to list</a>
 
     <div class="container mt-5 col-4">
+        <a class="btn btn-danger mb-4" href="{{ path(routePrefix ~ 'list') }}">
+            {{ 'review.back_to_list'|trans() }}
+        </a>
+
         {{ form_start(form) }}
             {{ form_row(form.companyName) }}
             {{ form_row(form.rating) }}
